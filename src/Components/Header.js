@@ -1,9 +1,10 @@
 import { Menu, Transition } from "@headlessui/react";
 import { UserIcon } from "@heroicons/react/20/solid";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
+import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const Header = () => {
-  const [userName, setUserName] = useState("");
+  const { email, setEmail } = useSyncedEmailStore();
   return (
     <div className="bg-blue-600 text-white p-4">
       <div className="flex justify-between items-center">
@@ -11,7 +12,7 @@ export const Header = () => {
           1:1문의하기
         </div>
         <div className="flex">
-          <div className="p-2">{userName}</div>
+          <div className="p-2">{email}</div>
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
@@ -35,31 +36,19 @@ export const Header = () => {
                         className={`${
                           active ? "bg-violet-500 text-white" : "text-gray-900"
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                        onClick={() => setUserName("테스트")}
-                      >
-                        생성
-                      </button>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${
-                          active ? "bg-violet-500 text-white" : "text-gray-900"
-                        } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        onClick={() => setEmail("테스트")}
                       >
                         로그인
                       </button>
                     )}
                   </Menu.Item>
-                </div>
-                <div className="px-1 py-1">
                   <Menu.Item>
                     {({ active }) => (
                       <button
                         className={`${
                           active ? "bg-violet-500 text-white" : "text-gray-900"
                         } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                        onClick={() => setEmail("")}
                       >
                         로그아웃
                       </button>

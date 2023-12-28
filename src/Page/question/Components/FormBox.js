@@ -4,24 +4,20 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { POSTDisclosureItem } from "api/apiService";
 import { getCurrentDateTime } from "utils/getCurrentDateTime";
 import { escapeInput } from "utils/escapeInput";
-import { Modal } from "Components/Modal";
 import { validateForm } from "utils/validateForm";
+import { useModalStore } from "store/useModalStore";
 
 export const FormBox = ({ goToTab }) => {
+  const { openModal } = useModalStore();
   const queryClient = useQueryClient();
   const [selectedTabInfo, setSelectedTabInfo] = useState({});
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [modalContent, setModalContent] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
   const postMutation = useMutation({
     mutationFn: POSTDisclosureItem,
     onSuccess: () => {
-      // 성공 시 질문 리스트 갱신
       queryClient.invalidateQueries({ queryKey: ["questionList"] });
-      setIsSuccess(true);
     },
   });
 
@@ -32,8 +28,7 @@ export const FormBox = ({ goToTab }) => {
 
     // 폼 체크 (실패 예외)
     if (validationError) {
-      setModalContent(validationError);
-      setIsModalOpen(true);
+      openModal(validationError);
       return;
     }
 
@@ -48,20 +43,13 @@ export const FormBox = ({ goToTab }) => {
     });
 
     // 성공 팝업
-    setModalContent("1:1 문의가 등록되었습니다.");
-    setIsModalOpen(true);
+    openModal("1:1 문의가 등록되었습니다.", handleModalClose);
   };
 
   const handleModalClose = () => {
-    setIsModalOpen(false);
-
-    // 성공 시 확인버튼에 기능 추가
-    if (isSuccess) {
-      goToTab(1);
-      setIsSuccess(false);
-      setTitle("");
-      setContent("");
-    }
+    goToTab(1);
+    setTitle("");
+    setContent("");
   };
 
   return (
@@ -87,11 +75,6 @@ export const FormBox = ({ goToTab }) => {
       >
         등록하기
       </button>
-      <Modal
-        isOpen={isModalOpen}
-        content={modalContent}
-        onClose={handleModalClose}
-      />
     </form>
   );
 };

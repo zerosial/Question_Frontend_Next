@@ -5,11 +5,15 @@ import { Header } from "./Components/Header";
 import { QuestionLayout } from "./Page/question/QuestionLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Modal } from "Components/Modal";
+import { useModalStore } from "store/useModalStore";
 
 function App() {
   const queryClient = new QueryClient();
+  const { isModalOpen, modalContent, closeModal } = useModalStore();
   return (
     <QueryClientProvider client={queryClient}>
+      <Modal isOpen={isModalOpen} content={modalContent} onClose={closeModal} />
       <div className="App">
         <Header />
         <QuestionLayout />
