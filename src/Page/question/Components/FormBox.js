@@ -40,6 +40,9 @@ export const FormBox = ({ goToTab }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
+    // 로딩 중 얼리 리턴
+    if (loading) return;
+
     // 폼 체크 (실패 예외)
     if (validationError) {
       openModal(validationError);
@@ -63,12 +66,14 @@ export const FormBox = ({ goToTab }) => {
         <input
           className="mt-2 p-2 w-full border border-gray-300 rounded-lg"
           placeholder="제목을 입력해주세요(50자 내)"
+          disabled={loading}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
           className="mt-2 p-2 w-full h-64 border border-gray-300 rounded-lg"
           placeholder="내용을 입력해주세요"
+          disabled={loading}
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
