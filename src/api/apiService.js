@@ -25,9 +25,13 @@ export const GETDisclosureItems = async () => {
   }
 };
 
-export const DELETEDisclosureItem = async (key) => {
+export const DELETEDisclosureItem = async (id) => {
+  console.log("id", id);
   try {
-    const response = await axios.delete(`/mock/api/disclosure-items/${key}`);
+    const response = await axios.delete(
+      "https://question-pineone.koyeb.app/inquiry",
+      id
+    );
     console.log("DELETEDisclosureItem:", response.data);
   } catch (error) {
     console.error("Error deleting item:", error);
