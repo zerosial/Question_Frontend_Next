@@ -26,9 +26,6 @@ export const DisclosureItem = ({
     },
   });
 
-  console.log("{ id: Number(id) }", { id: id });
-  console.log("typeof id", typeof id);
-
   return (
     <Disclosure>
       {({ open }) => (
@@ -61,7 +58,7 @@ export const DisclosureItem = ({
             <div className="flex flex-row-reverse">
               <button
                 type="button"
-                onClick={() => deleteMutation.mutate({ id: Number(id) })}
+                onClick={() => deleteMutation.mutate(id)}
                 className="focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
               >
                 삭제하기
