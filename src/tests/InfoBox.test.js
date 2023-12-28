@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { InfoBox } from "./InfoBox";
+import { InfoBox } from "../Page/question/Components/InfoBox";
 
 describe("InfoBox 컴포넌트", () => {
   const renderInfoBox = () => render(<InfoBox />);

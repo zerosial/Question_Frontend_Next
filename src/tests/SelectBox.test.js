@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { SelectBox } from "./SelectBox";
-import { SELECT_OPTION } from "../constants";
+import { SelectBox } from "../Page/question/Components/SelectBox";
+import { SELECT_OPTION } from "../Page/question/constants";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 

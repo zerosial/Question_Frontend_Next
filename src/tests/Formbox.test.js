@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { FormBox } from "./FormBox";
+import { FormBox } from "../Page/question/Components/FormBox";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@testing-library/jest-dom";
 import { setupServer } from "msw/node";

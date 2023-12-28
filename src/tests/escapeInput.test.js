@@ -1,4 +1,4 @@
-const { escapeInput } = require("./escapeInput");
+const { escapeInput } = require("../utils/escapeInput");
 
 describe("escapeInput 함수", () => {
   test("앰퍼샌드(&) 이스케이프 처리 확인", () => {

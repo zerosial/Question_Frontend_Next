@@ -1,4 +1,4 @@
-const { unescapeInput } = require("./unescapeInput");
+const { unescapeInput } = require("../utils/unescapeInput");
 
 describe("unescapeInput 함수", () => {
   test("앰퍼샌드(&amp;) 복원 처리 확인", () => {

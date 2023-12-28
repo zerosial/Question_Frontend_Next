@@ -1,4 +1,4 @@
-const { getCurrentDateTime } = require("./getCurrentDateTime");
+const { getCurrentDateTime } = require("../utils/getCurrentDateTime");
 
 describe("getCurrentDateTime 함수 테스트", () => {
   test("현재 날짜와 시간이 올바른 형식으로 반환되는지 확인", () => {
