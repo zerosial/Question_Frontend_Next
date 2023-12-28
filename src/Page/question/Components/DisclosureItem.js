@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { BlueBadge, GrayBadge } from "Components/Badges";
 import { CustomBadges } from "Components/CustomBadges";
 import { DELETEDisclosureItem } from "api/apiService";
+import { formatDate } from "utils/formatDate";
 import { unescapeInput } from "utils/unescapeInput";
 export const DisclosureItem = ({
   id,
@@ -37,11 +38,11 @@ export const DisclosureItem = ({
                 ) : (
                   <GrayBadge badge="답변대기" />
                 )}
-                <div>{date}</div>
+                <div>{formatDate(date)}</div>
               </div>
               <div className="flex gap-2 mt-2">
                 <CustomBadges badge={badge} />
-                <div className="w-2/3">{unescapeInput(title)}</div>
+                <div>{unescapeInput(title)}</div>
               </div>
             </div>
             <ChevronRightIcon

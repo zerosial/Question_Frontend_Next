@@ -30,13 +30,13 @@ export const ListQuestionPage = () => {
       <div className="mx-auto w-full max-w-md rounded-2xl bg-white">
         {data.map((item) => (
           <DisclosureItem
-            key={item.key}
-            id={item.key}
-            badge={item.badge}
-            date={item.date}
+            key={item.id}
+            id={item.id}
+            badge={item.questionCategory}
+            date={item.registeredDate}
             title={item.title}
-            contents={item.contents}
-            isAnswer={item.isAnswer}
+            contents={item.content}
+            isAnswer={item.answer}
             answer={item.answer}
           />
         ))}

@@ -6,6 +6,7 @@ import { getCurrentDateTime } from "utils/getCurrentDateTime";
 import { escapeInput } from "utils/escapeInput";
 import { validateForm } from "utils/validateForm";
 import { useModalStore } from "store/useModalStore";
+import { convertKoreanToEnglish } from "utils/convertKoreanToEnglish";
 
 export const FormBox = ({ goToTab }) => {
   const { openModal } = useModalStore();
@@ -39,12 +40,11 @@ export const FormBox = ({ goToTab }) => {
 
     //데이터 mutation
     postMutation.mutate({
-      badge: selectedTabInfo.service,
-      date: getCurrentDateTime(),
       title: escapeInput(title),
-      contents: escapeInput(content),
-      isAnswer: false,
-      answer: null,
+      content: escapeInput(content),
+      questionCategory: convertKoreanToEnglish(selectedTabInfo.service),
+      questionDetail: convertKoreanToEnglish(selectedTabInfo.serviceSub),
+      userEmail: "user@example.com", // 사용자
     });
   };
 
