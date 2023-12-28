@@ -2,28 +2,36 @@ import React, { useState } from "react";
 import { SelectBox } from "./SelectBox";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { POSTDisclosureItem } from "api/apiService";
-import { getCurrentDateTime } from "utils/getCurrentDateTime";
 import { escapeInput } from "utils/escapeInput";
 import { validateForm } from "utils/validateForm";
 import { useModalStore } from "store/useModalStore";
 import { convertKoreanToEnglish } from "utils/convertKoreanToEnglish";
+import { SpinnerButton } from "./SpinnerButton";
 
 export const FormBox = ({ goToTab }) => {
   const { openModal } = useModalStore();
   const queryClient = useQueryClient();
+  const [loading, setLoading] = useState(false);
   const [selectedTabInfo, setSelectedTabInfo] = useState({});
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const postMutation = useMutation({
     mutationFn: POSTDisclosureItem,
+    onMutate: () => {
+      setLoading(true); // 뮤테이션 시작 시 로딩 시작
+    },
     onSuccess: () => {
+      setLoading(false); // 성공 시 로딩 종료
       queryClient.invalidateQueries({ queryKey: ["questionList"] });
       openModal("1:1 문의가 등록되었습니다.", () => {
         goToTab(1);
         setTitle("");
         setContent("");
       });
+    },
+    onError: () => {
+      setLoading(false); // 오류 발생 시 로딩 종료
     },
   });
 
@@ -69,7 +77,7 @@ export const FormBox = ({ goToTab }) => {
         type="submit"
         className="w-full mt-4 p-4 rounded-lg bg-blue-500 text-white text-xl text-center"
       >
-        등록하기
+        {loading ? <SpinnerButton /> : "등록하기"}
       </button>
     </form>
   );
