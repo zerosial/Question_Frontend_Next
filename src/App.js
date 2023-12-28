@@ -11,6 +11,7 @@ const queryClient = new QueryClient();
 
 function App() {
   const { isModalOpen, modalContent, closeModal } = useModalStore();
+
   return (
     <QueryClientProvider client={queryClient}>
       <Modal isOpen={isModalOpen} content={modalContent} onClose={closeModal} />

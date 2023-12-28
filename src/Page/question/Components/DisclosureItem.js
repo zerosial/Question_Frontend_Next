@@ -8,7 +8,8 @@ import { formatDate } from "utils/formatDate";
 import { unescapeInput } from "utils/unescapeInput";
 import { AnswerBox } from "./AnswerBox";
 import { useModalStore } from "store/useModalStore";
-import { SpinnerSmallButton } from "./SpinnerButton";
+import { SpinnerSmallButton } from "Components/SpinnerButton";
+
 export const DisclosureItem = ({
   id,
   badge,

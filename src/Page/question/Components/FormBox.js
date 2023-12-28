@@ -6,7 +6,7 @@ import { escapeInput } from "utils/escapeInput";
 import { validateForm } from "utils/validateForm";
 import { useModalStore } from "store/useModalStore";
 import { convertKoreanToEnglish } from "utils/convertKoreanToEnglish";
-import { SpinnerButton } from "./SpinnerButton";
+import { SpinnerButton } from "Components/SpinnerButton";
 
 export const FormBox = ({ goToTab }) => {
   const { openModal } = useModalStore();
