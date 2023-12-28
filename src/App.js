@@ -7,9 +7,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Modal } from "Components/Modal";
 import { useModalStore } from "store/useModalStore";
+const queryClient = new QueryClient();
 
 function App() {
-  const queryClient = new QueryClient();
   const { isModalOpen, modalContent, closeModal } = useModalStore();
   return (
     <QueryClientProvider client={queryClient}>

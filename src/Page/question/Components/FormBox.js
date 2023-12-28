@@ -18,6 +18,11 @@ export const FormBox = ({ goToTab }) => {
     mutationFn: POSTDisclosureItem,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["questionList"] });
+      openModal("1:1 문의가 등록되었습니다.", () => {
+        goToTab(1);
+        setTitle("");
+        setContent("");
+      });
     },
   });
 
@@ -41,15 +46,6 @@ export const FormBox = ({ goToTab }) => {
       isAnswer: false,
       answer: null,
     });
-
-    // 성공 팝업
-    openModal("1:1 문의가 등록되었습니다.", handleModalClose);
-  };
-
-  const handleModalClose = () => {
-    goToTab(1);
-    setTitle("");
-    setContent("");
   };
 
   return (
