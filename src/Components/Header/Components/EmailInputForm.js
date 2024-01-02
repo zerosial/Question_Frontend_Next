@@ -1,5 +1,6 @@
-import { useMutation } from "@tanstack/react-query";
-import { POSTUser } from "api/apiService";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { SpinnerSmallButton } from "Components/SpinnerButton";
+import { GETUser, POSTUser } from "api/apiService";
 import { useState } from "react";
 import { useModalStore } from "store/useModalStore";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
@@ -7,30 +8,43 @@ import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 export const EmailInputForm = () => {
   const { setEmail } = useSyncedEmailStore();
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { openModal } = useModalStore();
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: POSTUser,
     onSuccess: () => {
-      console.log("success");
-      /* openModal("1:1 문의가 등록되었습니다.", () => {
-        //
-      }) */
+      setEmail(input);
+      openModal("신규 사용자입니다. 회원가입 되었습니다.");
+      queryClient.invalidateQueries({ queryKey: ["questionList"] });
+      setIsLoading(false);
     },
     onError: (error) => {
       console.log("error", error);
     },
   });
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     if (!e.target.checkValidity()) {
       return;
     }
-    e.preventDefault();
-    mutate({
-      email: input,
-    });
 
-    //setEmail(input);
+    setIsLoading(true);
+
+    if (isLoading || isPending) return;
+
+    e.preventDefault();
+
+    const isUser = await GETUser(input);
+    if (isUser && isUser.length > 0) {
+      setEmail(input);
+      openModal("회원 가입된 사용자입니다. 로그인 되었습니다.");
+      queryClient.invalidateQueries({ queryKey: ["questionList"] });
+    } else {
+      mutate({
+        email: input,
+      });
+    }
   };
 
   return (
@@ -48,7 +62,7 @@ export const EmailInputForm = () => {
         type="submit"
         className="w-[72px] text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center"
       >
-        로그인
+        {isLoading || isPending ? <SpinnerSmallButton /> : "로그인"}
       </button>
     </form>
   );

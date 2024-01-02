@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { LoadingSkeletonBox } from "Components/LoadingSkeletonBox";
 
 export const ListQuestionPage = () => {
-  const { isPending, data } = useQuery({
+  const { isFetching, data } = useQuery({
     queryKey: ["questionList"],
     queryFn: GETDisclosureItems,
   });
 
-  if (isPending) return <LoadingSkeletonBox />;
+  if (isFetching) return <LoadingSkeletonBox />;
 
   if (data.length === 0) {
     return (
