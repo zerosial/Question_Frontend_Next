@@ -12,6 +12,7 @@ export const LogoutSection = () => {
     queryClient.invalidateQueries({ queryKey: ["questionList"] });
     openModal("로그아웃 되었습니다.");
   };
+
   return (
     <div className="flex gap-2">
       <div className="p-2">{email}</div>

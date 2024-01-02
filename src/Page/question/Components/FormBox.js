@@ -7,11 +7,13 @@ import { validateForm } from "utils/validateForm";
 import { useModalStore } from "store/useModalStore";
 import { convertKoreanToEnglish } from "utils/convertKoreanToEnglish";
 import { SpinnerButton } from "Components/SpinnerButton";
+import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const FormBox = ({ goToTab }) => {
   const { openModal } = useModalStore();
   const queryClient = useQueryClient();
   const [selectedTabInfo, setSelectedTabInfo] = useState({});
+  const { email } = useSyncedEmailStore();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -28,15 +30,14 @@ export const FormBox = ({ goToTab }) => {
     onError: () => openModal("삭제에 실패했습니다."),
   });
 
-  const validationError = validateForm({ title, content });
-
   const onSubmitHandler = (e) => {
+    const validationError = validateForm({ title, content, email });
     e.preventDefault();
 
     // 로딩 중 얼리 리턴
     if (isPending) return;
 
-    // 폼 체크 (실패 예외)
+    // 폼 체크
     if (validationError) {
       openModal(validationError);
       return;
@@ -48,7 +49,7 @@ export const FormBox = ({ goToTab }) => {
       content: escapeInput(content),
       questionCategory: convertKoreanToEnglish(selectedTabInfo.service),
       questionDetail: convertKoreanToEnglish(selectedTabInfo.serviceSub),
-      userEmail: "user@example.com", // 사용자
+      userEmail: email,
     });
   };
 
