@@ -6,10 +6,15 @@ import { useModalStore } from "store/useModalStore";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const EmailInputForm = () => {
+  // 이메일, 모달 Store
   const { setEmail } = useSyncedEmailStore();
+  const { openModal } = useModalStore();
+
+  // React Hooks
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { openModal } = useModalStore();
+
+  // React-Query
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: POSTUser,

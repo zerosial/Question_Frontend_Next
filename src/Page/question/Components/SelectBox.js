@@ -3,6 +3,8 @@ import { SELECT_OPTION } from "../constants";
 
 export const SelectBox = ({ setSelectedTabInfo }) => {
   const initOption = Object.keys(SELECT_OPTION);
+
+  // React Hooks
   const [service, setService] = useState(initOption[0]);
   const [serviceSub, setServiceSub] = useState(SELECT_OPTION[initOption[0]][0]);
   const [items, setItems] = useState([]);

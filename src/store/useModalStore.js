@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+// 모달을 관리하는 Store
 export const useModalStore = create((set) => ({
   isModalOpen: false,
   modalContent: "",

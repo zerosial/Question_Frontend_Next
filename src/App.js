@@ -10,6 +10,7 @@ import { useModalStore } from "store/useModalStore";
 const queryClient = new QueryClient();
 
 function App() {
+  // 모달 App 최상단 호출 및 셋팅
   const { isModalOpen, modalContent, closeModal } = useModalStore();
 
   return (

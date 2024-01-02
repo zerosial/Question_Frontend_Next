@@ -5,12 +5,16 @@ import { LoadingSkeletonBox } from "Components/LoadingSkeletonBox";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const ListQuestionPage = () => {
+  // 이메일 Store
   const { email } = useSyncedEmailStore();
+
+  // React-Query
   const { isFetching, data } = useQuery({
     queryKey: ["questionList"],
     queryFn: GETDisclosureItems,
   });
 
+  // 로딩 중
   if (isFetching) return <LoadingSkeletonBox />;
 
   if (!email) {

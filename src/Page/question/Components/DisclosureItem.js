@@ -19,8 +19,11 @@ export const DisclosureItem = ({
   isAnswer,
   answer,
 }) => {
-  const queryClient = useQueryClient();
+  // 모달 Store
   const { openModal } = useModalStore();
+
+  // React-Query
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: DELETEDisclosureItem,
     onSuccess: () => {

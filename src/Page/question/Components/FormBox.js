@@ -10,13 +10,17 @@ import { SpinnerButton } from "Components/SpinnerButton";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const FormBox = ({ goToTab }) => {
-  const { openModal } = useModalStore();
-  const queryClient = useQueryClient();
-  const [selectedTabInfo, setSelectedTabInfo] = useState({});
+  // 이메일, 모달 Store
   const { email } = useSyncedEmailStore();
+  const { openModal } = useModalStore();
+
+  // React Hooks
+  const [selectedTabInfo, setSelectedTabInfo] = useState({});
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  // React-Query
+  const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: POSTDisclosureItem,
     onSuccess: () => {

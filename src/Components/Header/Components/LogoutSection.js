@@ -3,9 +3,12 @@ import { useModalStore } from "store/useModalStore";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const LogoutSection = () => {
-  const queryClient = useQueryClient();
+  // 이메일, 모달 Store
   const { openModal } = useModalStore();
   const { email, setEmail } = useSyncedEmailStore();
+
+  // React-Query
+  const queryClient = useQueryClient();
 
   const onLogoutHandler = () => {
     setEmail(null);
