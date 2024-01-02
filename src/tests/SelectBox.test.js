@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { SelectBox } from "../Page/question/Components/SelectBox";
-import { SELECT_OPTION } from "../Page/question/constants";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { SELECT_OPTION } from "utils/constants";
 
 // MSW 서버 설정
 

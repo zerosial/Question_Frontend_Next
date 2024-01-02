@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { SELECT_OPTION } from "../constants";
+import { SELECT_OPTION } from "utils/constants";
 
 export const SelectBox = ({ setSelectedTabInfo }) => {
   const initOption = Object.keys(SELECT_OPTION);
