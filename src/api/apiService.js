@@ -39,6 +39,7 @@ export const POSTDisclosureItem = async (item) => {
 
 export const GETDisclosureItems = async () => {
   try {
+    // React hooks 밖에서 Zustand 접근
     const email = useEmailStore.getState().email;
     const response = await axios.get(
       `https://question-pineone.koyeb.app/inquiry/user?email=${
