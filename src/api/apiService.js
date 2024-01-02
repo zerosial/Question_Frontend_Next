@@ -1,4 +1,17 @@
 import axios from "axios";
+import { useEmailStore } from "store/useSyncedEmailStore";
+
+export const POSTUser = async (email) => {
+  try {
+    const response = await axios.post(
+      "https://question-pineone.koyeb.app/user",
+      email
+    );
+    console.log("POSTUser:", response.data);
+  } catch (error) {
+    console.error("Error saving item:", error);
+  }
+};
 
 export const POSTDisclosureItem = async (item) => {
   try {
@@ -14,8 +27,10 @@ export const POSTDisclosureItem = async (item) => {
 
 export const GETDisclosureItems = async () => {
   try {
+    const test = useEmailStore.getState().email;
+    console.log("test", test);
     const response = await axios.get(
-      "https://question-pineone.koyeb.app/inquiries/user?email=user%40example.com"
+      "https://question-pineone.koyeb.app/inquiry/user?email=user%40example.com"
     );
     console.log("GETDisclosureItems:", response.data);
     return response.data;

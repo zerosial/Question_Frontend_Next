@@ -2,7 +2,7 @@ import { useSyncExternalStore } from "react";
 import { create } from "zustand";
 
 // 이메일을 관리하는 Store
-const useEmailStore = create((set) => ({
+export const useEmailStore = create((set) => ({
   email: "",
   setEmail: (newEmail) => set({ email: newEmail }),
 }));

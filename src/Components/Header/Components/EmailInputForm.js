@@ -1,16 +1,36 @@
+import { useMutation } from "@tanstack/react-query";
+import { POSTUser } from "api/apiService";
 import { useState } from "react";
+import { useModalStore } from "store/useModalStore";
 import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const EmailInputForm = () => {
   const { setEmail } = useSyncedEmailStore();
   const [input, setInput] = useState("");
+  const { openModal } = useModalStore();
+  const { mutate, isPending } = useMutation({
+    mutationFn: POSTUser,
+    onSuccess: () => {
+      console.log("success");
+      /* openModal("1:1 문의가 등록되었습니다.", () => {
+        //
+      }) */
+    },
+    onError: (error) => {
+      console.log("error", error);
+    },
+  });
 
   const onSubmitHandler = (e) => {
     if (!e.target.checkValidity()) {
       return;
     }
     e.preventDefault();
-    setEmail(input);
+    mutate({
+      email: input,
+    });
+
+    //setEmail(input);
   };
 
   return (
