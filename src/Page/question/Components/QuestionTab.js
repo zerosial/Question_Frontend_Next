@@ -8,7 +8,7 @@ export const QuestionTab = ({ currentTab, goToTab }) => {
 
   return (
     <div className="flex gap-2">
-      <div
+      <button
         tabIndex={0}
         className={`p-4 rounded-lg border-blue-300 border-2 text-center w-1/2 ${
           currentTab === 0 ? "bg-blue-100" : ""
@@ -16,8 +16,8 @@ export const QuestionTab = ({ currentTab, goToTab }) => {
         onClick={handleClick}
       >
         문의하기
-      </div>
-      <div
+      </button>
+      <button
         tabIndex={1}
         className={`p-4 rounded-lg border-blue-300 border-2 text-center w-1/2 ${
           currentTab === 1 ? "bg-blue-100" : ""
@@ -25,7 +25,7 @@ export const QuestionTab = ({ currentTab, goToTab }) => {
         onClick={handleClick}
       >
         내 문의 내역
-      </div>
+      </button>
     </div>
   );
 };

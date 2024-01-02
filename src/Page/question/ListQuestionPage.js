@@ -1,16 +1,31 @@
 import { GETDisclosureItems } from "api/apiService";
 import { DisclosureItem } from "./Components/DisclosureItem";
 import { useQuery } from "@tanstack/react-query";
+import { LoadingSkeletonBox } from "Components/LoadingSkeletonBox";
+import { useSyncedEmailStore } from "store/useSyncedEmailStore";
 
 export const ListQuestionPage = () => {
-  const { isPending, error, data } = useQuery({
+  // 이메일 Store
+  const { email } = useSyncedEmailStore();
+
+  // React-Query
+  const { isFetching, data } = useQuery({
     queryKey: ["questionList"],
     queryFn: GETDisclosureItems,
   });
 
-  if (isPending) return "Loading...";
+  // 로딩 중
+  if (isFetching) return <LoadingSkeletonBox />;
 
-  if (error) return "An error has occurred: " + error.message;
+  if (!email) {
+    return (
+      <div className="w-full p-8">
+        <div className="mx-auto w-full max-w-md rounded-2xl bg-white">
+          로그인 하여 내역을 확인해 주세요.
+        </div>
+      </div>
+    );
+  }
 
   if (data.length === 0) {
     return (
@@ -27,13 +42,13 @@ export const ListQuestionPage = () => {
       <div className="mx-auto w-full max-w-md rounded-2xl bg-white">
         {data.map((item) => (
           <DisclosureItem
-            key={item.key}
-            id={item.key}
-            badge={item.badge}
-            date={item.date}
+            key={item.id}
+            id={item.id}
+            badge={item.questionCategory}
+            date={item.registeredDate}
             title={item.title}
-            contents={item.contents}
-            isAnswer={item.isAnswer}
+            contents={item.content}
+            isAnswer={item.answer?.isAnswer}
             answer={item.answer}
           />
         ))}

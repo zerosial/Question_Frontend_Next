@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@testing-library/jest-dom";
 import { setupServer } from "msw/node";
 import { handlers } from "mocks/handlers";
-import { clearDisclosureItems } from "mocks/disclosureStore";
+import { clearDisclosureItems } from "mocks/mockStore";
 import { ListQuestionPage } from "../Page/question/ListQuestionPage";
 
 // MSW 서버 설정

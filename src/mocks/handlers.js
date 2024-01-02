@@ -4,17 +4,20 @@ import {
   clearDisclosureItems,
   deleteDisclosureItem,
   getDisclosureItems,
-} from "./disclosureStore";
+} from "./mockStore";
 
-const postHandler = http.post("/api/disclosure-items", async ({ request }) => {
-  const newItem = await request.json();
-  addDisclosureItem(newItem);
-  return new Response(JSON.stringify(newItem), {
-    status: 201,
-  });
-});
+const postHandler = http.post(
+  "/mock/api/disclosure-items",
+  async ({ request }) => {
+    const newItem = await request.json();
+    addDisclosureItem(newItem);
+    return new Response(JSON.stringify(newItem), {
+      status: 201,
+    });
+  }
+);
 
-const getHandler = http.get("/api/disclosure-items", () => {
+const getHandler = http.get("/mock/api/disclosure-items", () => {
   const items = getDisclosureItems();
   return new Response(JSON.stringify(items));
 });
@@ -27,7 +30,7 @@ const deleteHandler = http.delete(
   }
 );
 
-const clearHandler = http.delete("/api/disclosure-items", () => {
+const clearHandler = http.delete("/mock/api/disclosure-items", () => {
   clearDisclosureItems();
   return new Response(null, { status: 204 });
 });

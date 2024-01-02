@@ -15,3 +15,15 @@ export const deleteDisclosureItem = (key) => {
 export const clearDisclosureItems = () => {
   disclosureItems = [];
 };
+
+let user = null;
+
+export const getUser = () => user;
+
+export const setUser = (item) => {
+  user = item;
+};
+
+export const deleteUser = () => {
+  user = null;
+};

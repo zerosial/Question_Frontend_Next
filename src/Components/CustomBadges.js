@@ -10,17 +10,17 @@ export const CustomBadges = ({ badge }) => {
   let BadgeComponent;
 
   switch (badge) {
-    case "회원정보":
-      BadgeComponent = <BlueBadge badge={badge} />;
+    case "MEMBER_INFO":
+      BadgeComponent = <BlueBadge badge="회원정보" />;
       break;
-    case "카셰어링":
-      BadgeComponent = <GreenBadge badge={badge} />;
+    case "CAR_SHARING":
+      BadgeComponent = <GreenBadge badge="카셰어링" />;
       break;
-    case "차량관제":
-      BadgeComponent = <RedBadge badge={badge} />;
+    case "VEHICLE_CONTROL":
+      BadgeComponent = <RedBadge badge="차량관제" />;
       break;
-    case "기타":
-      BadgeComponent = <YellowBadge badge={badge} />;
+    case "OTHER":
+      BadgeComponent = <YellowBadge badge="기타" />;
       break;
     default:
       BadgeComponent = <GrayBadge badge={badge} />;

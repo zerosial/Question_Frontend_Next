@@ -2,10 +2,7 @@ import "@testing-library/jest-dom";
 import { POSTDisclosureItem } from "api/apiService";
 import { setupServer } from "msw/node";
 import { handlers } from "mocks/handlers";
-import {
-  clearDisclosureItems,
-  getDisclosureItems,
-} from "mocks/disclosureStore";
+import { clearDisclosureItems, getDisclosureItems } from "mocks/mockStore";
 
 // MSW 서버 설정
 export const server = setupServer(...handlers);
