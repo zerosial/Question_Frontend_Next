@@ -1,9 +1,10 @@
 import React from "react";
 
 export const QuestionTab = ({ currentTab, goToTab }) => {
+  // 슬라이더 이동을 위한 Click Handler
   const handleClick = (event) => {
     const tabIndex = Number(event.target.tabIndex);
-    goToTab(tabIndex); // 부모 컴포넌트에 인덱스 전달
+    goToTab(tabIndex);
   };
 
   return (

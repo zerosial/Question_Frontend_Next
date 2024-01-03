@@ -6,9 +6,11 @@ import { ListQuestionPage } from "./ListQuestionPage";
 import { AskQuestionPage } from "./AskQuestionPage";
 
 export const QuestionLayout = () => {
+  // React Hooks
   const sliderRef = useRef();
   const [currentTab, setCurrentTab] = useState(0);
 
+  // 슬라이더 설정
   const settings = {
     dots: false,
     infinite: false,
@@ -21,6 +23,7 @@ export const QuestionLayout = () => {
     afterChange: (current) => setCurrentTab(current),
   };
 
+  // 슬라이더 index 이동
   const goToTab = (index) => {
     sliderRef.current?.slickGoTo(index);
   };

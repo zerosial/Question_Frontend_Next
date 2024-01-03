@@ -4,3 +4,5 @@ export const SELECT_OPTION = {
   차량관제: ["기타"], // 차량 관제의 경우 기본값 공백
   기타: ["기타"], // 기타의 경우 기본값 공백
 };
+
+export const API_END_POINT = "https://question-pineone.koyeb.app";
